@@ -1,4 +1,4 @@
-import { getContentList, ContentFetchError } from "../getContentList";
+import { getContentList } from "../getContentList";
 import { client } from "../client";
 
 jest.mock("../client", () => ({

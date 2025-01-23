@@ -13,13 +13,6 @@ export const getContentList = async (): Promise<MicroCMSListResponse> => {
 
     return response;
   } catch (error: any) {
-    console.error("Error details:", {
-      name: error.name,
-      message: error.message,
-      status: error.response?.status,
-      stack: error.stack,
-    });
-
     if (error.response) {
       switch (error.response.status) {
         case 401:

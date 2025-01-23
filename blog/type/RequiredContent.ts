@@ -13,7 +13,6 @@ type BlogContent = {
   id: string;
   updatedAt: string;
   title: string;
-  content: string;
   eyecatch?: Image;
   category?: Category;
 };

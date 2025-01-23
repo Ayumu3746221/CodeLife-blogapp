@@ -29,14 +29,7 @@ export const FormatingMicroCMSListResponse = async (
       }),
     };
     return formatedData;
-  } catch (error: any) {
-    console.error("convert.ts | Error details:", {
-      name: error.name,
-      message: error.message,
-      status: error.response?.status,
-      stack: error.stack,
-    });
-
+  } catch (error) {
     if (error instanceof FormatError) {
       throw error;
     }
