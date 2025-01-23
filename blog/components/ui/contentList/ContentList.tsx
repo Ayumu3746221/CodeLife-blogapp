@@ -24,14 +24,18 @@ const ContentList: React.FC = () => {
 
         if (!response.ok) {
           console.error(
-            "Fetch failed in ContentList.tsx at fetchContentList()"
+            "Fetch failed in ContentList.tsx at fetchContentList(), not response.ok"
           );
         }
 
         const contentList = await response.json();
         await handleContentList(contentList.response);
       } catch (error) {
-        console.error("Error fetching content in ContentList.tsx", error);
+        console.error(
+          "Fetch failed in ContentList.tsx at fetchContentList(), catch error",
+          error
+        );
+        throw new Error("Failed to fetch content list in ContentList.tsx");
       }
     };
     fetchContentList();
