@@ -59,7 +59,7 @@ const ContentList: React.FC = () => {
               />
             </div>
             <div className="p-4">
-              <h2 className="text-black font-semibold text-xl mb-2 text-nowrap">
+              <h2 className="text-black font-semibold text-xl mb-2 truncate">
                 {content.title}
               </h2>
             </div>

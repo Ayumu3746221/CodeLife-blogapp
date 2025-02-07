@@ -29,6 +29,6 @@ describe("Header", () => {
 
     expect(homeLink).toHaveAttribute("href", "/");
     expect(portfolioLink).toHaveAttribute("href", "/");
-    expect(contactLink).toHaveAttribute("href", "/");
+    expect(contactLink).toHaveAttribute("href", "/contact");
   });
 });
