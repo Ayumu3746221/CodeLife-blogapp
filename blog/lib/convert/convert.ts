@@ -1,11 +1,14 @@
-import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
-import { RequiredContent } from "@/type/RequiredContent";
+import {
+  MicroCMSListResponse,
+  MicroCMSResponse,
+} from "@/type/MicroCMSResponse";
+import { RequiredContentList, Article } from "@/type/RequiredContent";
 
 export const FormatingMicroCMSListResponse = async (
   response: MicroCMSListResponse
-): Promise<RequiredContent> => {
+): Promise<RequiredContentList> => {
   try {
-    const formatedData: RequiredContent = {
+    const formatedData: RequiredContentList = {
       contents: response.contents.map((content) => {
         const category = content.category
           ? {
@@ -15,7 +18,9 @@ export const FormatingMicroCMSListResponse = async (
           : undefined;
 
         if (!content.content) {
-          throw new FormatError("Invalid data format|Missing data content");
+          throw new FormatError(
+            "Invalid data format|Missing data content in FormatingMicroCMSListResponse"
+          );
         }
 
         return {
@@ -28,6 +33,45 @@ export const FormatingMicroCMSListResponse = async (
         };
       }),
     };
+    return formatedData;
+  } catch (error) {
+    if (error instanceof FormatError) {
+      throw error;
+    }
+
+    if (error instanceof TypeError) {
+      throw new FormatError("Invalid data format|Missing data");
+    }
+    throw new Error("Failed to format data|Unnokwn Error");
+  }
+};
+
+export const FormatingMicroCMSResponse = async (
+  response: MicroCMSResponse
+): Promise<Article> => {
+  try {
+    const category = response.category
+      ? {
+          id: response.category.id,
+          name: response.category.name,
+        }
+      : undefined;
+
+    if (!response.content) {
+      throw new FormatError(
+        "Invalid data format|Missing data content in FormatingMicroCMSResponse"
+      );
+    }
+
+    const formatedData: Article = {
+      id: response.id,
+      updatedAt: response.updatedAt,
+      title: response.title,
+      content: response.content,
+      eyecatch: response.eyecatch || undefined,
+      category: category,
+    };
+
     return formatedData;
   } catch (error) {
     if (error instanceof FormatError) {

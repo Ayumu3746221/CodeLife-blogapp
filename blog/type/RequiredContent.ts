@@ -17,6 +17,15 @@ type BlogContent = {
   category?: Category;
 };
 
-export type RequiredContent = {
+export type Article = {
+  id: string;
+  updatedAt: string;
+  title: string;
+  content: string;
+  eyecatch?: Image;
+  category?: Category;
+};
+
+export type RequiredContentList = {
   contents: BlogContent[];
 };

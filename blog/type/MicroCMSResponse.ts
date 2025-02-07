@@ -31,3 +31,15 @@ export type MicroCMSListResponse = {
   offset: number;
   limit: number;
 };
+
+export type MicroCMSResponse = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  title: string;
+  content: string;
+  eyecatch: Image;
+  category: Category;
+};

@@ -16,6 +16,7 @@ MicroCMS は初めての実装なためどうなるかわからないがドキ�
 
 - https://document.microcms.io/content-api/get-list-contents
 - https://blog.microcms.io/microcms-next15-jamstack-blog/
+- https://github.com/microcmsio/microcms-js-sdk/blob/main/README_jp.md
 
 実装予定
 

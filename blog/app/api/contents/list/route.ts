@@ -5,12 +5,12 @@ import {
 } from "@/lib/microcms/getContentList";
 import { FormatingMicroCMSListResponse } from "@/lib/convert/convert";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
-import { RequiredContent } from "@/type/RequiredContent";
+import { RequiredContentList } from "@/type/RequiredContent";
 
 export async function GET() {
   try {
     const contents: MicroCMSListResponse = await getContentList();
-    const response: RequiredContent = await FormatingMicroCMSListResponse(
+    const response: RequiredContentList = await FormatingMicroCMSListResponse(
       contents
     );
     return NextResponse.json({ response }, { status: 200 });
