@@ -28,7 +28,7 @@ describe("Header", () => {
     const contactLink = screen.getByRole("link", { name: /contact/i });
 
     expect(homeLink).toHaveAttribute("href", "/");
-    expect(portfolioLink).toHaveAttribute("href", "/");
+    expect(portfolioLink).toHaveAttribute("href", "/portfolio");
     expect(contactLink).toHaveAttribute("href", "/contact");
   });
 });
