@@ -57,7 +57,7 @@ function page() {
               Portfolio Page
             </h1>
             <p className="text-lg lg:text-xl">
-              This is the portfolio page. Here you can showcase your projects.
+              This is the portfolio page. I will introduce my skill stack etc.
             </p>
           </div>
           <div className="mt-8 lg:mt-0 flex-none relative w-32 h-32 lg:w-64 lg:h-64">
