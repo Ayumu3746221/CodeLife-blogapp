@@ -1,51 +1,37 @@
 "use client";
 
 import type { Article } from "@/type/RequiredContent";
+import useSWR from "swr";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DOMPurify from "isomorphic-dompurify";
+import Loading from "@/components/ui/load/Loading";
+
+const fetcher = (url: string): Promise<{ response: Article }> =>
+  fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to fetch article in Article component");
+    }
+    return response.json();
+  });
 interface ArticleProps {
   articleId: string;
 }
 
 const Article: React.FC<ArticleProps> = ({ articleId }: ArticleProps) => {
-  const [article, setArticle] = useState<Article | null>(null);
+  const url = `/api/search/article?${new URLSearchParams({ id: articleId })}`;
 
-  const handleArticle = async ({
-    id,
-    updatedAt,
-    title,
-    content,
-    eyecatch,
-    category,
-  }: Article) => {
-    setArticle({
-      id: id,
-      updatedAt: new Date(updatedAt).toLocaleDateString(),
-      title: title,
-      content: content,
-      eyecatch: eyecatch,
-      category: category,
-    });
-  };
+  const { data, error, isLoading } = useSWR(url, fetcher);
 
-  useEffect(() => {
-    const params = { id: articleId };
-    const query = new URLSearchParams(params);
+  if (error) {
+    return <div>Error: this request is faild</div>;
+  }
 
-    const fetchArticle = async (): Promise<void> => {
-      const response: Response = await fetch(`/api/search/article?${query}`);
+  if (isLoading) {
+    return <Loading />;
+  }
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch article in Article component");
-      }
-
-      const articleData = (await response.json()) as { response: Article };
-      await handleArticle(articleData.response);
-    };
-
-    fetchArticle();
-  }, [articleId]);
+  const article: Article | undefined = data?.response;
 
   return (
     <main className="w-full min-h-screen bg-gray-50">
