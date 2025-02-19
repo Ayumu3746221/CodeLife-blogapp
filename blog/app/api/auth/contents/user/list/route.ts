@@ -6,33 +6,23 @@ import {
 } from "@/lib/microcms/getContentList";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
 import { RequiredContentList } from "@/type/RequiredContent";
-import type { Session } from "next-auth";
+import { Session } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-interface AuthenticatedRequest extends NextRequest {
-  auth: Session | null;
-}
-
-type AppRouteHandlerFnContext = {
-  params?: Record<string, string | string[]>;
-};
-
-export const GET = auth(async function GET(
-  req: AuthenticatedRequest,
-  ctx: AppRouteHandlerFnContext
-): Promise<NextResponse> {
-  if (!req.auth?.user) {
+export async function GET(req: NextRequest): Promise<NextResponse> {
+  const session: Session | null = await auth();
+  if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (req.auth.user.email === undefined || req.auth.user.email === "") {
+  if (session.user.email === undefined || session.user.email === "") {
     return NextResponse.json(
       { error: "Unauthorized | user undefined" },
       { status: 401 }
     );
   }
 
-  if (req.auth.user.email === null) {
+  if (session.user.email === null) {
     return NextResponse.json(
       { error: "Unauthorized | user null" },
       { status: 401 }
@@ -40,7 +30,7 @@ export const GET = auth(async function GET(
   }
 
   try {
-    const userEmail: string = req.auth.user.email;
+    const userEmail: string = session.user.email;
     const contents: MicroCMSListResponse = await getContentList();
     const responseData: RequiredContentList =
       await FormatingMicroCMSListResponse(contents);
@@ -63,4 +53,4 @@ export const GET = auth(async function GET(
       { status: 500 }
     );
   }
-});
+}
