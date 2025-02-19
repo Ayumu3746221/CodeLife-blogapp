@@ -6,9 +6,12 @@ import {
 } from "@/lib/microcms/getContentList";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
 import { RequiredContentList } from "@/type/RequiredContent";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = auth(async function GET(request) {
+export const GET = auth(async function GET(
+  request,
+  context: { params?: Record<string, string | string[]> }
+): Promise<NextResponse> {
   if (!request.auth?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
