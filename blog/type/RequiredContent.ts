@@ -9,12 +9,20 @@ type Category = {
   name: string;
 };
 
+type User = {
+  user: string;
+  icon: Image;
+  introduction: string;
+  mail: string;
+};
+
 type BlogContent = {
   id: string;
   updatedAt: string;
   title: string;
   eyecatch?: Image;
   category?: Category;
+  user: User;
 };
 
 export type Article = {
