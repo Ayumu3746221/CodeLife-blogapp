@@ -6,7 +6,9 @@ function DashboardContentList() {
   return (
     <div className="flex w-full min-h-screen bg-gray-50">
       <Menu />
-      <UserContentList />
+      <div className="w-full">
+        <UserContentList />
+      </div>
     </div>
   );
 }
