@@ -23,6 +23,13 @@ export const FormatingMicroCMSListResponse = async (
           );
         }
 
+        const user = {
+          user: content.user.user,
+          icon: content.user.icon,
+          introduction: content.user.introduction,
+          mail: content.user.mail,
+        };
+
         return {
           id: content.id,
           updatedAt: content.updatedAt,
@@ -30,6 +37,7 @@ export const FormatingMicroCMSListResponse = async (
           content: content.content,
           eyecatch: content.eyecatch || undefined,
           category: category,
+          user: user,
         };
       }),
     };

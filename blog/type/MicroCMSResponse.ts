@@ -13,6 +13,18 @@ type Category = {
   name: string;
 };
 
+type User = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  user: string;
+  icon: Image;
+  introduction: string;
+  mail: string;
+};
+
 type BlogContent = {
   id: string;
   createdAt: string;
@@ -23,6 +35,7 @@ type BlogContent = {
   content: string;
   eyecatch: Image;
   category: Category;
+  user: User;
 };
 
 export type MicroCMSListResponse = {
