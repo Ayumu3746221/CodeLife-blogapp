@@ -7,39 +7,34 @@ import { RequiredContentList } from "@/type/RequiredContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import useSWR from "swr";
+import Loading from "../load/Loading";
 
-const ContentList: React.FC = () => {
-  const [contentList, setContentList] = useState<RequiredContentList>({
-    contents: [],
+const fetcher = (url: string): Promise<{ response: RequiredContentList }> =>
+  fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to fetch content list in ContentList component");
+    }
+    return response.json();
   });
 
-  const handleContentList = async (Content: RequiredContentList) => {
-    setContentList(Content);
-  };
+const ContentList: React.FC = () => {
+  const url = "/api/contents/list";
+  const { data, error, isLoading } = useSWR(url, fetcher);
 
-  useEffect(() => {
-    const fetchContentList = async () => {
-      try {
-        const response: Response = await fetch("/api/contents/list");
+  if (error) {
+    return <div>Error: this request is faild</div>;
+  }
 
-        if (!response.ok) {
-          console.error(
-            "Fetch failed in ContentList.tsx at fetchContentList(), not response.ok"
-          );
-        }
+  if (isLoading) {
+    return <Loading />;
+  }
 
-        const contentList = await response.json();
-        await handleContentList(contentList.response);
-      } catch (error) {
-        console.error(
-          "Fetch failed in ContentList.tsx at fetchContentList(), catch error",
-          error
-        );
-        throw new Error("Failed to fetch content list in ContentList.tsx");
-      }
-    };
-    fetchContentList();
-  }, []);
+  if (typeof data === "undefined") {
+    return <div>Error: this request is faild</div>;
+  }
+
+  const contentList: RequiredContentList = data.response;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
