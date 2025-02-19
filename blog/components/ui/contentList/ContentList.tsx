@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { RequiredContentList } from "@/type/RequiredContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
