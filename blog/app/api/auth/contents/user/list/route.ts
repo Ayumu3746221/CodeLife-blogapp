@@ -15,7 +15,7 @@ interface AuthenticatedRequest extends NextRequest {
 
 export const GET = auth(async function GET(
   request: AuthenticatedRequest,
-  context: { params?: Record<string, string | string[]> } = {}
+  context: any
 ): Promise<NextResponse> {
   if (!request.auth?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
