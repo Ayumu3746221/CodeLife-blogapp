@@ -24,6 +24,7 @@ export const FormatingMicroCMSListResponse = async (
         }
 
         const user = {
+          id: content.user.id,
           user: content.user.user,
           icon: content.user.icon,
           introduction: content.user.introduction,
@@ -72,6 +73,7 @@ export const FormatingMicroCMSResponse = async (
     }
 
     const user = {
+      id: response.user.id,
       user: response.user.user,
       icon: response.user.icon,
       introduction: response.user.introduction,
