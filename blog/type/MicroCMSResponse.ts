@@ -14,6 +14,11 @@ type Category = {
   name: string;
 };
 
+type RequestCategory = {
+  id: string;
+  name: string;
+};
+
 type User = {
   id: string;
   createdAt: string;
@@ -61,4 +66,11 @@ export type MicroCMSResponse = {
 
 export type MicroCMSMediaResponse = {
   media: Image[];
+};
+
+export type MicroCMSCategoryResponse = {
+  contents: RequestCategory[];
+  totalCount: number;
+  offset: number;
+  limit: number;
 };
