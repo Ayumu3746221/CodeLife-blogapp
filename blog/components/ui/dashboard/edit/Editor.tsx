@@ -26,7 +26,6 @@ export default function Editor({ content, handleArticleChange }: EditorProps) {
   editor.onChange(async () => {
     const html = await editor.blocksToHTMLLossy(editor.document);
     handleArticleChange(html);
-    console.log(html);
   });
 
   return (

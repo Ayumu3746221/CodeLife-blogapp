@@ -1,7 +1,7 @@
 type Image = {
   url: string;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 };
 
 type Category = {
@@ -10,10 +10,11 @@ type Category = {
 };
 
 type User = {
-  user: string;
-  icon: Image;
-  introduction: string;
-  mail: string;
+  id: string;
+  user?: string;
+  icon?: Image;
+  introduction?: string;
+  mail?: string;
 };
 
 type BlogContent = {

@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { Article } from "@/type/RequiredContent";
 import Loading from "../../load/Loading";
+import TitleEditor from "./TitleEditor";
+import SelectMedia from "./SelectMedia";
+import SelectCtegory from "./SelectCtegory";
 
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
@@ -18,13 +21,10 @@ const EditPage = ({ articleId }: EditPageProps) => {
     updatedAt: "",
     title: "",
     content: "",
-    eyecatch: { url: "", height: 0, width: 0 },
-    category: { id: "", name: "" },
+    eyecatch: { url: "" },
+    category: { id: "", name: "未選択" },
     user: {
-      user: "",
-      icon: { url: "", height: 0, width: 0 },
-      introduction: "",
-      mail: "",
+      id: "",
     },
   });
   const [isPending, setPending] = useState<boolean>(true);
@@ -87,7 +87,6 @@ const EditPage = ({ articleId }: EditPageProps) => {
       ...prev,
       content: content,
     }));
-    console.log(content);
   };
 
   const handleTitleChange = (title: string) => {
@@ -97,20 +96,36 @@ const EditPage = ({ articleId }: EditPageProps) => {
     }));
   };
 
+  const handleMediaChange = (url: string) => {
+    setArticle((prev) => ({
+      ...prev,
+      eyecatch: { url: url },
+    }));
+  };
+
+  const handleCategoryChange = (id: string, name: string) => {
+    setArticle((prev) => ({
+      ...prev,
+      category: { id: id, name: name },
+    }));
+  };
+
   if (isPending) {
     return <Loading />;
   }
   return (
     <div className="w-full min-h-screen p-4">
       <div className="w-[90%] mx-auto">
-        <div className="mt-4 mb-2">
-          <h1 className="text-2xl font-bold text-gray-800">Title</h1>
-          <input
-            type="text"
-            placeholder="Enter title"
-            value={article.title}
-            onChange={(e) => handleTitleChange(e.target.value)}
-            className="w-full border border-gray-300 rounded px-3 py-2 mt-2"
+        <div>
+          <SelectMedia
+            url={article.eyecatch?.url}
+            handleMediaChange={handleMediaChange}
+          />
+        </div>
+        <div className="my-4">
+          <TitleEditor
+            title={article.title}
+            handleTitleChange={handleTitleChange}
           />
         </div>
         <div className="mt-2">
@@ -119,6 +134,11 @@ const EditPage = ({ articleId }: EditPageProps) => {
             handleArticleChange={handleArticleChange}
           />
         </div>
+        <SelectCtegory
+          id={article.category?.id}
+          name={article.category?.name}
+          handleCategoryChange={handleCategoryChange}
+        />
       </div>
     </div>
   );
