@@ -32,6 +32,7 @@ export type Article = {
   content: string;
   eyecatch?: Image;
   category?: Category;
+  user: User;
 };
 
 export type RequiredContentList = {

@@ -55,4 +55,5 @@ export type MicroCMSResponse = {
   content: string;
   eyecatch: Image;
   category: Category;
+  user: User;
 };
