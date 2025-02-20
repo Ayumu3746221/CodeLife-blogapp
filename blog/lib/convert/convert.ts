@@ -71,6 +71,13 @@ export const FormatingMicroCMSResponse = async (
       );
     }
 
+    const user = {
+      user: response.user.user,
+      icon: response.user.icon,
+      introduction: response.user.introduction,
+      mail: response.user.mail,
+    };
+
     const formatedData: Article = {
       id: response.id,
       updatedAt: response.updatedAt,
@@ -78,6 +85,7 @@ export const FormatingMicroCMSResponse = async (
       content: response.content,
       eyecatch: response.eyecatch || undefined,
       category: category,
+      user: user,
     };
 
     return formatedData;

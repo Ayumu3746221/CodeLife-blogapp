@@ -1,4 +1,4 @@
-import Article from "@/components/ui/article/Article";
+import EditPage from "@/components/ui/dashboard/edit/EditPage";
 import Menu from "@/components/ui/dashboard/Menu";
 import React from "react";
 
@@ -8,11 +8,10 @@ export default async function ArticleEdit({
   params: Promise<{ id: string }>;
 }) {
   const articleId = (await params).id;
-
   return (
     <div className="flex w-full">
       <Menu></Menu>
-      <Article articleId={articleId} />
+      <EditPage articleId={articleId} />
     </div>
   );
 }
