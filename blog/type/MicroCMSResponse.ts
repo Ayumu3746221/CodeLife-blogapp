@@ -1,4 +1,5 @@
 type Image = {
+  id?: string;
   url: string;
   height: number;
   width: number;
@@ -56,4 +57,8 @@ export type MicroCMSResponse = {
   eyecatch: Image;
   category: Category;
   user: User;
+};
+
+export type MicroCMSMediaResponse = {
+  media: Image[];
 };
