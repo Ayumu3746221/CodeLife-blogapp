@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { ConvertMedia } from "@/lib/convert/converMedia";
+import { ConvertMedia } from "@/lib/convert/convertMedia";
 import getMedia from "@/lib/microcms/getMedia";
 import { MicroCMSMediaResponse } from "@/type/MicroCMSResponse";
 import { RequiredMediaList } from "@/type/RequiredMedia";
@@ -14,7 +14,6 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
   try {
     const response: MicroCMSMediaResponse = await getMedia();
     const data: RequiredMediaList = ConvertMedia(response);
-
     return NextResponse.json({ response: data }, { status: 200 });
   } catch (error) {
     console.error("Error | data fetching from microCMS", error);
