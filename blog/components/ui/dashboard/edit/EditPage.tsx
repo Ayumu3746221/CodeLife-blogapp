@@ -147,7 +147,7 @@ const EditPage = ({ articleId }: EditPageProps) => {
     } finally {
       router.push("/dashboard");
     }
-  }, []);
+  }, [article]);
 
   if (isPending) {
     return <Loading />;

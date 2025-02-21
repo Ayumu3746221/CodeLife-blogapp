@@ -74,3 +74,12 @@ export type MicroCMSCategoryResponse = {
   offset: number;
   limit: number;
 };
+
+export type MicroCMSUserResponse = {
+  contents: {
+    id: string;
+  };
+  totalCount: number;
+  offset: number;
+  limit: number;
+};
