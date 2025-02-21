@@ -10,7 +10,7 @@ type Category = {
 };
 
 type User = {
-  id: string;
+  id?: string;
   user?: string;
   icon?: Image;
   introduction?: string;
@@ -33,7 +33,7 @@ export type Article = {
   content: string;
   eyecatch?: Image;
   category?: Category;
-  user: User;
+  user?: User;
 };
 
 export type RequiredContentList = {

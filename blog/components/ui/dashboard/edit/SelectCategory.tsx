@@ -17,7 +17,7 @@ const fetcher = (url: string): Promise<{ response: RequestCategory }> => {
   });
 };
 
-const SelectCtegory = ({
+const SelectCategory = ({
   id,
   name,
   handleCategoryChange,
@@ -65,4 +65,4 @@ const SelectCtegory = ({
   );
 };
 
-export default SelectCtegory;
+export default SelectCategory;
