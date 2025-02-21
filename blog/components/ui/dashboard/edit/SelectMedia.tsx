@@ -1,8 +1,10 @@
 import { RequiredMediaList } from "@/type/RequiredMedia";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 import Loading from "../../load/Loading";
+import { UploadMediaResult } from "@/lib/microcms/uploadMedia";
+import { UploadMediaAPIResponse } from "@/app/api/auth/media/route";
 
 interface SelectMediaProps {
   url?: string;
@@ -24,6 +26,43 @@ const SelectMedia = ({ url, handleMediaChange }: SelectMediaProps) => {
 
   const fecthUrl = "/api/auth/media";
   const { data, error, isLoading } = useSWR(fecthUrl, fetcher);
+
+  const handleFileUpload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files;
+      if (!files || files.length === 0) return;
+      const file = files[0];
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size exceeds 5MB limit.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response: Response = await fetch("/api/auth/media", {
+          method: "POST",
+          body: formData,
+        });
+        if (!response.ok) {
+          console.error("Failed to upload media");
+          return;
+        }
+        const data = (await response.json()) as UploadMediaAPIResponse;
+
+        if (data?.media?.url) {
+          handleMediaChange(data.media.url);
+        }
+      } catch (error) {
+        console.error("Upload error:", error);
+      } finally {
+        setModalOpen(false);
+      }
+    },
+    [handleMediaChange]
+  );
 
   if (error) {
     return <div>Error: this request is faild</div>;
@@ -96,6 +135,7 @@ const SelectMedia = ({ url, handleMediaChange }: SelectMediaProps) => {
                 accept=".png, .jpg, .jpeg"
                 className="hidden"
                 ref={fileInputRef}
+                onChange={handleFileUpload}
               />
             </div>
           </div>
