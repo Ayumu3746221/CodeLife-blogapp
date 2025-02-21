@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getContent } from "@/lib/microcms/getContent";
+import { getContent } from "@/lib/microcms/content/getContent";
 import { FormatingMicroCMSResponse } from "@/lib/convert/convert";
 import { MicroCMSResponse } from "@/type/MicroCMSResponse";
 import { Article } from "@/type/RequiredContent";
-import { ContentFetchError } from "@/lib/microcms/getContentList";
+import { ContentFetchError } from "@/lib/microcms/content/getContentList";
 
 export async function GET(request: NextRequest) {
   try {

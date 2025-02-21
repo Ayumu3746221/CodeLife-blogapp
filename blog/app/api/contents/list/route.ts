@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import {
   getContentList,
   ContentFetchError,
-} from "@/lib/microcms/getContentList";
+} from "@/lib/microcms/content/getContentList";
 import { FormatingMicroCMSListResponse } from "@/lib/convert/convert";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
 import { RequiredContentList } from "@/type/RequiredContent";

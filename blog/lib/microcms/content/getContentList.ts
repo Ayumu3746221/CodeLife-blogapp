@@ -1,4 +1,4 @@
-import { client } from "./client";
+import { client } from "../client";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
 
 export const getContentList = async (): Promise<MicroCMSListResponse> => {
