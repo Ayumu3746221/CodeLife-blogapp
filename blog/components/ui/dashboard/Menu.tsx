@@ -27,7 +27,7 @@ const Menu = () => {
             </li>
             <li>
               <Link
-                href="/dashboard/edit/new"
+                href="/dashboard/edit/article/new"
                 className="block text-gray-700 hover:text-gray-900 transition whitespace-nowrap"
               >
                 New post

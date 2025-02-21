@@ -24,8 +24,6 @@ export const updateContent = async ({
       payload["category"] = categoryId;
     }
 
-    console.log(payload);
-
     client.update({
       endpoint: "blogs",
       contentId: id,
