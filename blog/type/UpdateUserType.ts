@@ -1,4 +1,4 @@
-export type UpdateUser = {
+export type UpdateUserType = {
   id: string;
   icon: string;
   introduction: string;

@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { getUser } from "@/lib/microcms/user/getUser";
 import { updateUser } from "@/lib/microcms/user/updateUser";
 import { MicroCMSUserDetailResponse } from "@/type/MicroCMSResponse";
+import { UpdateUserType } from "@/type/updateUserType";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
@@ -40,7 +41,7 @@ export const PATCH = async (request: NextRequest): Promise<NextResponse> => {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    const body = await request.json();
+    const body = (await request.json()) as UpdateUserType;
     const response: { ok: boolean; message: string } = await updateUser({
       id: body.id,
       icon: body.icon,

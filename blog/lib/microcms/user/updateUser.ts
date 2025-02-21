@@ -1,4 +1,4 @@
-import { UpdateUser } from "@/type/updateUserType";
+import { UpdateUserType } from "@/type/updateUserType";
 import { client } from "../client";
 
 export const updateUser = async ({
@@ -6,7 +6,7 @@ export const updateUser = async ({
   icon,
   introduction,
   mail,
-}: UpdateUser): Promise<{ ok: boolean; message: string }> => {
+}: UpdateUserType): Promise<{ ok: boolean; message: string }> => {
   try {
     const payload: { [key: string]: string } = {
       icon,
