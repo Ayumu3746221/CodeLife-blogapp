@@ -2,10 +2,14 @@ import { auth } from "@/auth";
 import { getUser } from "@/lib/microcms/user/getUser";
 import { updateUser } from "@/lib/microcms/user/updateUser";
 import { MicroCMSUserDetailResponse } from "@/type/MicroCMSResponse";
-import { UpdateUserType } from "@/type/updateUserType";
+import { UpdateUserType } from "@/type/UpdateUserType";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");

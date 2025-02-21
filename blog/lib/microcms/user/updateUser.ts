@@ -1,4 +1,4 @@
-import { UpdateUserType } from "@/type/updateUserType";
+import { UpdateUserType } from "@/type/UpdateUserType";
 import { client } from "../client";
 
 export const updateUser = async ({
