@@ -2,15 +2,21 @@
 
 import { Article } from "@/type/RequiredContent";
 import dynamic from "next/dynamic";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SelectMedia from "./SelectMedia";
 import TitleEditor from "./TitleEditor";
 import SelectCategory from "./SelectCategory";
 import { useRouter } from "next/navigation";
+import { auth } from "@/auth";
+import { Session } from "next-auth";
 
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
-const CreateArticlePage = () => {
+interface CreateArticlePageProps {
+  mail: string;
+}
+
+const CreateArticlePage = ({ mail }: CreateArticlePageProps) => {
   const [article, setArticle] = useState<Article>({
     id: "",
     updatedAt: "",
@@ -23,6 +29,35 @@ const CreateArticlePage = () => {
     },
   });
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchingUser = async () => {
+      const response: void | Response = await fetch(
+        `/api/auth/user/id?mail=${mail}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).catch((error) => {
+        console.error("Error", error);
+        return;
+      });
+
+      if (!response?.ok) {
+        console.error("Failed to get user");
+        return;
+      }
+
+      const data = await response.json();
+      setArticle((prev) => ({
+        ...prev,
+        user: { id: data.payload.user.id },
+      }));
+    };
+    fetchingUser();
+  }, []);
 
   const handleArticleChange = useCallback((content: string) => {
     setArticle((prev) => ({
@@ -86,7 +121,7 @@ const CreateArticlePage = () => {
     } finally {
       router.push("/dashboard/contents");
     }
-  }, []);
+  }, [article]);
 
   return (
     <div className="w-full min-h-screen p-4">
