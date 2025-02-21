@@ -119,7 +119,7 @@ const CreateArticlePage = ({ mail }: CreateArticlePageProps) => {
         return;
       }
     } finally {
-      router.push("/dashboard/contents");
+      router.push("/dashboard");
     }
   }, [article]);
 

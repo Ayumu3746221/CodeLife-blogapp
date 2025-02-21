@@ -17,7 +17,7 @@ type User = {
   mail?: string;
 };
 
-type BlogContent = {
+export type BlogContent = {
   id: string;
   updatedAt: string;
   title: string;
