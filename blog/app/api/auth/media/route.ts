@@ -30,6 +30,10 @@ export type UploadMediaAPIResponse = {
 };
 
 export const POST = async (request: NextRequest): Promise<NextResponse> => {
+  const session: Session | null = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const formData = await request.formData();
     const fileField = formData.get("file");
