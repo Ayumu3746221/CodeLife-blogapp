@@ -1,6 +1,6 @@
 import { MicroCMSCategoryResponse } from "@/type/MicroCMSResponse";
 import { client } from "./client";
-import { ContentFetchError } from "./getContentList";
+import { ContentFetchError } from "./content/getContentList";
 
 export const getCategory = async (): Promise<MicroCMSCategoryResponse> => {
   const response = await client.get({

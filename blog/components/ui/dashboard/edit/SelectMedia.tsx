@@ -45,7 +45,10 @@ const SelectMedia = ({ url, handleMediaChange }: SelectMediaProps) => {
             onClick={() => setModalOpen(true)}
           />
         ) : (
-          <div className="w-full h-64 flex items-center justify-center bg-gray-200 text-gray-600">
+          <div
+            className="w-[60%] mx-auto h-64 flex items-center justify-center bg-gray-200 text-gray-600"
+            onClick={() => setModalOpen(true)}
+          >
             No Image
           </div>
         )}

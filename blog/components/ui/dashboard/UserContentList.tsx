@@ -15,7 +15,7 @@ const fetcher = (url: string): Promise<{ response: RequiredContentList }> =>
   });
 
 const ContentList = () => {
-  const url = "/api/auth/contents/user/list";
+  const url = "/api/auth/contents/list";
   const { data, error, isLoading } = useSWR(url, fetcher);
 
   if (error) {

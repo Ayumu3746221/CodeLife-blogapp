@@ -3,7 +3,7 @@ import { FormatingMicroCMSListResponse } from "@/lib/convert/convert";
 import {
   ContentFetchError,
   getContentList,
-} from "@/lib/microcms/getContentList";
+} from "@/lib/microcms/content/getContentList";
 import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
 import { RequiredContentList } from "@/type/RequiredContent";
 import { Session } from "next-auth";
