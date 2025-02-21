@@ -83,3 +83,15 @@ export type MicroCMSUserResponse = {
   offset: number;
   limit: number;
 };
+
+export type MicroCMSUserDetailResponse = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  user: string;
+  icon: Image;
+  introduction: string;
+  mail: string;
+};
