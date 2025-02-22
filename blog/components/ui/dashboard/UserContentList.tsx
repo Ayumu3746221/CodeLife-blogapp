@@ -1,7 +1,7 @@
 "use client";
 import { RequiredContentList } from "@/type/RequiredContent";
 import React, { useCallback, useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import Loading from "../load/Loading";
 import ContentListItem from "./ContentListItem";
 import { useRouter } from "next/navigation";

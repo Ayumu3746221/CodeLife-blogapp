@@ -5,12 +5,12 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { Article } from "@/type/RequiredContent";
 import Loading from "../../load/Loading";
-import TitleEditor from "./TitleEditor";
+import TextEditor from "./editor/TextEditor";
 import SelectMedia from "./SelectMedia";
-import SelectCategory from "./SelectCategory";
+import SelectCategory from "./editor/SelectCategory";
 import { useRouter } from "next/navigation";
 
-const Editor = dynamic(() => import("./Editor"), { ssr: false });
+const Editor = dynamic(() => import("./editor/Editor"), { ssr: false });
 
 type EditPageProps = {
   articleId?: string;
@@ -162,9 +162,10 @@ const EditPage = ({ articleId }: EditPageProps) => {
           />
         </div>
         <div className="my-4">
-          <TitleEditor
-            title={article.title}
-            handleTitleChange={handleTitleChange}
+          <TextEditor
+            subject="Title"
+            text={article.title}
+            handleTextChange={handleTitleChange}
           />
         </div>
         <div className="mt-2">
