@@ -4,13 +4,11 @@ import { Article } from "@/type/RequiredContent";
 import dynamic from "next/dynamic";
 import React, { useCallback, useEffect, useState } from "react";
 import SelectMedia from "./SelectMedia";
-import TitleEditor from "./TitleEditor";
-import SelectCategory from "./SelectCategory";
+import TextEditor from "./editor/TextEditor";
+import SelectCategory from "./editor/SelectCategory";
 import { useRouter } from "next/navigation";
-import { auth } from "@/auth";
-import { Session } from "next-auth";
 
-const Editor = dynamic(() => import("./Editor"), { ssr: false });
+const Editor = dynamic(() => import("./editor/Editor"), { ssr: false });
 
 interface CreateArticlePageProps {
   mail: string;
@@ -133,9 +131,10 @@ const CreateArticlePage = ({ mail }: CreateArticlePageProps) => {
           />
         </div>
         <div className="my-4">
-          <TitleEditor
-            title={article.title}
-            handleTitleChange={handleTitleChange}
+          <TextEditor
+            subject="Title"
+            text={article.title}
+            handleTextChange={handleTitleChange}
           />
         </div>
         <div className="mt-2">

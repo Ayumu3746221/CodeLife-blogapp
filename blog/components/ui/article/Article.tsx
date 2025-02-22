@@ -65,7 +65,7 @@ const Article: React.FC<ArticleProps> = ({ articleId }: ArticleProps) => {
         </div>
 
         {article?.category?.name && (
-          <div className="mt-8">
+          <div className="mt-8 w-[80%] mx-auto">
             <span className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-2 py-1 rounded">
               {article.category.name}
             </span>

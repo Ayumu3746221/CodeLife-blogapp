@@ -3,12 +3,14 @@ import { client } from "../client";
 
 export const updateUser = async ({
   id,
+  user,
   icon,
   introduction,
   mail,
 }: UpdateUserType): Promise<{ ok: boolean; message: string }> => {
   try {
     const payload: { [key: string]: string } = {
+      user,
       icon,
       introduction,
       mail,
