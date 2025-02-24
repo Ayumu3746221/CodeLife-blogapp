@@ -1,4 +1,4 @@
-import { MicroCMSUserResponse } from "@/type/MicroCMSResponse";
+import { MicroCMSUserResponse } from "@/types/MicroCMSResponse";
 import { client } from "../client";
 
 export const getUserId = async (

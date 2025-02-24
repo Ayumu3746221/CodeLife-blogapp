@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { config } from "process";
 
 const nextConfig: NextConfig = {
   images: {

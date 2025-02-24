@@ -1,4 +1,4 @@
-import { MicroCMSMediaResponse } from "@/type/MicroCMSResponse";
+import { MicroCMSMediaResponse } from "@/types/MicroCMSResponse";
 
 const getMedia = async (): Promise<MicroCMSMediaResponse> => {
   const SERVICE_ID = process.env.MICROCMS_SERVICE_DOMAIN;

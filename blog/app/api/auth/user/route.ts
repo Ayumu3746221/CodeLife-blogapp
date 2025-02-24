@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
 import { getUser } from "@/lib/microcms/user/getUser";
 import { updateUser } from "@/lib/microcms/user/updateUser";
-import { MicroCMSUserDetailResponse } from "@/type/MicroCMSResponse";
-import { UpdateUserType } from "@/type/UpdateUserType";
+import { MicroCMSUserDetailResponse } from "@/types/MicroCMSResponse";
+import { UpdateUserType } from "@/types/UpdateUserType";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {

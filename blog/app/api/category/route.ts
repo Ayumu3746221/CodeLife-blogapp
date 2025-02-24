@@ -1,7 +1,7 @@
 import { convertCategory } from "@/lib/convert/convertCategory";
 import { getCategory } from "@/lib/microcms/getCategory";
-import { MicroCMSCategoryResponse } from "@/type/MicroCMSResponse";
-import { RequestCategory } from "@/type/RequiredCategory";
+import { MicroCMSCategoryResponse } from "@/types/MicroCMSResponse";
+import { RequestCategory } from "@/types/RequiredCategory";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {

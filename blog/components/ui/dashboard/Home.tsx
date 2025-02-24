@@ -11,6 +11,7 @@ const Home = async () => {
 
   return (
     <main className="flex-1 p-8 flex flex-col items-center justify-center space-y-12">
+      {JSON.stringify(session)}
       <h1 className="text-3xl lg:text-4xl font-bold text-center">
         {`Hello!! ${session.user?.name}`}
       </h1>

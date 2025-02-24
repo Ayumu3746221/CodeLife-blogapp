@@ -1,4 +1,4 @@
-import { repository } from "@/type/Prortfolio";
+import { repository } from "@/types/Prortfolio";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";

@@ -4,8 +4,8 @@ import {
   ContentFetchError,
 } from "@/lib/microcms/content/getContentList";
 import { FormatingMicroCMSListResponse } from "@/lib/convert/convert";
-import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
-import { RequiredContentList } from "@/type/RequiredContent";
+import { MicroCMSListResponse } from "@/types/MicroCMSResponse";
+import { RequiredContentList } from "@/types/RequiredContent";
 
 export async function GET() {
   try {

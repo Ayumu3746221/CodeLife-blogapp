@@ -1,6 +1,6 @@
 "use client";
 
-import type { Article } from "@/type/RequiredContent";
+import type { Article } from "@/types/RequiredContent";
 import useSWR from "swr";
 import Image from "next/image";
 import React from "react";

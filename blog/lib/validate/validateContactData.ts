@@ -1,4 +1,4 @@
-import { Contact } from "@/type/Contact";
+import { Contact } from "@/types/Contact";
 import { z } from "zod";
 
 const contactDataSchema = z.object({

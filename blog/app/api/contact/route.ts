@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { Contact } from "@/type/Contact";
+import type { Contact } from "@/types/Contact";
 import { validateContactData } from "@/lib/validate/validateContactData";
 import { sendMail } from "@/lib/nodemailer/sendMail";
 

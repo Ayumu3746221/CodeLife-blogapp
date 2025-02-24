@@ -3,7 +3,7 @@
 import React, { useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import { Article } from "@/type/RequiredContent";
+import { Article } from "@/types/RequiredContent";
 import Loading from "../../load/Loading";
 import TextEditor from "./editor/TextEditor";
 import SelectMedia from "./SelectMedia";

@@ -1,8 +1,8 @@
 import {
   MicroCMSListResponse,
   MicroCMSResponse,
-} from "@/type/MicroCMSResponse";
-import { RequiredContentList, Article } from "@/type/RequiredContent";
+} from "@/types/MicroCMSResponse";
+import { RequiredContentList, Article } from "@/types/RequiredContent";
 
 export const FormatingMicroCMSListResponse = async (
   response: MicroCMSListResponse

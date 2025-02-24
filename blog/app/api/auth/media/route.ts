@@ -2,8 +2,8 @@ import { auth } from "@/auth";
 import { ConvertMedia } from "@/lib/convert/convertMedia";
 import getMedia from "@/lib/microcms/getMedia";
 import { uploadMedia, UploadMediaResult } from "@/lib/microcms/uploadMedia";
-import { MicroCMSMediaResponse } from "@/type/MicroCMSResponse";
-import { RequiredMediaList } from "@/type/RequiredMedia";
+import { MicroCMSMediaResponse } from "@/types/MicroCMSResponse";
+import { RequiredMediaList } from "@/types/RequiredMedia";
 import { Session } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 

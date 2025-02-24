@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdateUserType } from "@/type/UpdateUserType";
+import { UpdateUserType } from "@/types/UpdateUserType";
 import React, { useCallback, useEffect, useState } from "react";
 import useSWR, { mutate } from "swr";
 import Loading from "../../load/Loading";

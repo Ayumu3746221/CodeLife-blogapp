@@ -1,4 +1,4 @@
-import type { Contact } from "@/type/Contact";
+import type { Contact } from "@/types/Contact";
 import { transporter } from "./transporter";
 
 export const sendMail = async (contactData: Contact): Promise<Boolean> => {

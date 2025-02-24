@@ -1,4 +1,4 @@
-import { MicroCMSCategoryResponse } from "@/type/MicroCMSResponse";
+import { MicroCMSCategoryResponse } from "@/types/MicroCMSResponse";
 import { client } from "./client";
 import { ContentFetchError } from "./content/getContentList";
 

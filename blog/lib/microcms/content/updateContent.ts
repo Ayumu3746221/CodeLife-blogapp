@@ -1,4 +1,4 @@
-import { PatchContent } from "@/type/PatchContent";
+import { PatchContent } from "@/types/PatchContent";
 import { client } from "../client";
 
 export const updateContent = async ({
