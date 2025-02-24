@@ -1,5 +1,5 @@
-import { MicroCMSCategoryResponse } from "@/type/MicroCMSResponse";
-import { RequestCategory } from "@/type/RequiredCategory";
+import { MicroCMSCategoryResponse } from "@/types/MicroCMSResponse";
+import { RequestCategory } from "@/types/RequiredCategory";
 import { FormatError } from "./convert";
 
 export const convertCategory = (response: MicroCMSCategoryResponse) => {

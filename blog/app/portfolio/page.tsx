@@ -3,7 +3,7 @@ import Image from "next/image";
 import SectionTitle from "@/components/ui/portfolio/SectionTitle";
 import { faJava, faJs } from "@fortawesome/free-brands-svg-icons";
 import { faBlog } from "@fortawesome/free-solid-svg-icons";
-import { skill, repository } from "@/type/Prortfolio";
+import { skill, repository } from "@/types/Prortfolio";
 import SkillCard from "@/components/ui/portfolio/SkillCard";
 import RepositoryCard from "@/components/ui/portfolio/RepositoryCard";
 import Link from "next/link";

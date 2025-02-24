@@ -1,5 +1,5 @@
-import { MicroCMSMediaResponse } from "@/type/MicroCMSResponse";
-import { RequiredMediaList } from "@/type/RequiredMedia";
+import { MicroCMSMediaResponse } from "@/types/MicroCMSResponse";
+import { RequiredMediaList } from "@/types/RequiredMedia";
 import { FormatError } from "./convert";
 
 export const ConvertMedia = (

@@ -1,5 +1,5 @@
 import React from "react";
-import { skill } from "@/type/Prortfolio";
+import { skill } from "@/types/Prortfolio";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SkillCard: React.FC<skill> = ({ icon, description }) => {

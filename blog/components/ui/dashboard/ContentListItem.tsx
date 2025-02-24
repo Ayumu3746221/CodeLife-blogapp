@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { BlogContent } from "@/type/RequiredContent";
+import { BlogContent } from "@/types/RequiredContent";
 
 interface ContentListItemProps {
   article: BlogContent;

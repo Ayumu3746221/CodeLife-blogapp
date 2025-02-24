@@ -1,5 +1,5 @@
 import { client } from "../client";
-import { MicroCMSResponse } from "@/type/MicroCMSResponse";
+import { MicroCMSResponse } from "@/types/MicroCMSResponse";
 import { ContentFetchError } from "./getContentList";
 
 export const getContent = async (id: string): Promise<MicroCMSResponse> => {

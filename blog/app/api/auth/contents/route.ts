@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PatchContent } from "@/type/PatchContent";
+import { PatchContent } from "@/types/PatchContent";
 import { updateContent } from "@/lib/microcms/content/updateContent";
 import { auth } from "@/auth";
 import { deleteContent } from "@/lib/microcms/content/deleteContent";
-import { PostContent } from "@/type/PostContent";
+import { PostContent } from "@/types/PostContent";
 import { createContent } from "@/lib/microcms/content/createCotent";
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {

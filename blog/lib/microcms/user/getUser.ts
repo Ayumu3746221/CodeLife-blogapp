@@ -1,5 +1,5 @@
 import { client } from "../client";
-import { MicroCMSUserDetailResponse } from "@/type/MicroCMSResponse";
+import { MicroCMSUserDetailResponse } from "@/types/MicroCMSResponse";
 import { ContentFetchError } from "../content/getContentList";
 
 export const getUser = async ({

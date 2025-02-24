@@ -1,4 +1,4 @@
-import { RequestCategory } from "@/type/RequiredCategory";
+import { RequestCategory } from "@/types/RequiredCategory";
 import React from "react";
 import useSWR from "swr";
 

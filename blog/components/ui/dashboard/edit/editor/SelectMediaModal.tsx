@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
-import { RequiredMediaList } from "@/type/RequiredMedia";
+import { RequiredMediaList } from "@/types/RequiredMedia";
 import useSWR, { mutate } from "swr";
 import Loading from "@/components/ui/load/Loading";
 import { UploadMediaAPIResponse } from "@/app/api/auth/media/route";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Article } from "@/type/RequiredContent";
+import { Article } from "@/types/RequiredContent";
 import dynamic from "next/dynamic";
 import React, { useCallback, useEffect, useState } from "react";
 import SelectMedia from "./SelectMedia";

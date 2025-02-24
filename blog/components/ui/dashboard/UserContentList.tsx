@@ -1,5 +1,5 @@
 "use client";
-import { RequiredContentList } from "@/type/RequiredContent";
+import { RequiredContentList } from "@/types/RequiredContent";
 import React, { useCallback, useState } from "react";
 import useSWR, { mutate } from "swr";
 import Loading from "../load/Loading";

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import SignIn from "@/components/ui/auth/SignIn";
+import SignInGoogle from "@/components/ui/auth/SignInGoogle";
+import SignInCredentail from "@/components/ui/auth/SignInCredentail";
 
 const LoginPage: React.FC = () => {
   return (
@@ -15,7 +16,8 @@ const LoginPage: React.FC = () => {
           />
         </div>
         <h2 className="text-lg font-semibold">Log in to Dashboard</h2>
-        <SignIn />
+        <SignInGoogle />
+        <SignInCredentail />
       </div>
     </div>
   );

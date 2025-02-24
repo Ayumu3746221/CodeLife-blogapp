@@ -4,8 +4,8 @@ import {
   ContentFetchError,
   getContentList,
 } from "@/lib/microcms/content/getContentList";
-import { MicroCMSListResponse } from "@/type/MicroCMSResponse";
-import { RequiredContentList } from "@/type/RequiredContent";
+import { MicroCMSListResponse } from "@/types/MicroCMSResponse";
+import { RequiredContentList } from "@/types/RequiredContent";
 import { Session } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 

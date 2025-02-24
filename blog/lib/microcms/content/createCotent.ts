@@ -1,4 +1,4 @@
-import { PostContent } from "@/type/PostContent";
+import { PostContent } from "@/types/PostContent";
 import { client } from "../client";
 
 export const createContent = async ({
