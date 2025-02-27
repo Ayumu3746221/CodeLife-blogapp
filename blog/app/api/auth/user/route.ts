@@ -4,6 +4,7 @@ import { updateUser } from "@/lib/microcms/user/updateUser";
 import { MicroCMSUserDetailResponse } from "@/types/MicroCMSResponse";
 import { UpdateUserType } from "@/types/UpdateUserType";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/prisma/client";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
   const session = await auth();
@@ -57,6 +58,13 @@ export const PATCH = async (request: NextRequest): Promise<NextResponse> => {
     if (!response.ok) {
       return NextResponse.json({ error: response.message }, { status: 500 });
     }
+
+    await prisma.user.update({
+      where: { email: body.mail },
+      data: {
+        username: body.user,
+      },
+    });
 
     return NextResponse.json({ response: response.message }, { status: 200 });
   } catch (error) {
