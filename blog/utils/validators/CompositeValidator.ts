@@ -1,3 +1,5 @@
+import { Validator } from "./Validator";
+
 export class CompositeValidator extends Validator {
   private validators: Validator[];
 
