@@ -3,6 +3,9 @@ import Credentails from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import prisma from "@/prisma/client";
 import bcrypt from "bcryptjs";
+import { boolean, isValid } from "zod";
+import { ValidationContext } from "./domain/ValidationStrategy/ValidationContext";
+import { LoginValidationStrategy } from "./domain/ValidationStrategy/LoginValidationStrategy";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -35,6 +38,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         const { username, password } = credentials;
+
+        // バリデーションチェック
+        const isValidation: boolean = new ValidationContext(
+          new LoginValidationStrategy()
+        ).executeValidation({ username, password });
+
+        if (!isValidation) return null;
 
         const userData = await prisma.user.findUnique({
           where: { username },
