@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "echo 'ESLint disabled'",
     "generate-hash": "tsc ./script/generateHash.ts && node ./script/generateHash.js",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test": "jest"
   },
   "dependencies": {
     "@blocknote/core": "^0.24.0",
