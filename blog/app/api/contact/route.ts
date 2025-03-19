@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { Contact } from "@/types/Contact";
-import { validateContactData } from "@/lib/validate/validateContactData";
 import { sendMail } from "@/lib/nodemailer/sendMail";
+import { ValidationContext } from "@/domain/ValidationStrategy/ValidationContext";
+import { ContactValidationStrategy } from "@/domain/ValidationStrategy/ContactValidationStrategy";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = (await request.json()) as unknown;
-    const validationResult = validateContactData(body);
+    const body = (await request.json()) as Contact;
+    const validationResult = new ValidationContext(
+      new ContactValidationStrategy()
+    ).executeValidation(body);
 
-    if (!validationResult.success) {
-      return NextResponse.json(
-        { error: "Validation faild", details: validationResult.error },
-        { status: 400 }
-      );
+    if (!validationResult) {
+      return NextResponse.json({ error: "Validation faild" }, { status: 400 });
     }
 
-    const contactData = validationResult.data as Contact;
+    const contactData = body as Contact;
     const sendResult = await sendMail(contactData);
 
     if (!sendResult) {
