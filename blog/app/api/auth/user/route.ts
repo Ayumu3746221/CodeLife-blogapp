@@ -5,6 +5,8 @@ import { MicroCMSUserDetailResponse } from "@/types/MicroCMSResponse";
 import { UpdateUserType } from "@/types/UpdateUserType";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
+import { ValidationContext } from "@/domain/ValidationStrategy/ValidationContext";
+import { UserValidationStrategy } from "@/domain/ValidationStrategy/UserValidationStrategy";
 
 export const GET = async (request: NextRequest): Promise<NextResponse> => {
   const session = await auth();
@@ -47,6 +49,18 @@ export const PATCH = async (request: NextRequest): Promise<NextResponse> => {
   }
   try {
     const body = (await request.json()) as UpdateUserType;
+
+    const requestValidation: boolean = new ValidationContext(
+      new UserValidationStrategy()
+    ).executeValidation(body);
+
+    if (!requestValidation) {
+      return NextResponse.json(
+        { error: "Invalid request|Validation failed" },
+        { status: 400 }
+      );
+    }
+
     const response: { ok: boolean; message: string } = await updateUser({
       id: body.id,
       user: body.user,
