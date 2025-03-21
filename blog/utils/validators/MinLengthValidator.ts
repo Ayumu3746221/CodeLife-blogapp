@@ -9,6 +9,7 @@ export class MinLengthValidator extends Validator {
   }
 
   protected doValidate(input: string): boolean {
+    if (!input) return false;
     return input.length >= this.minLength;
   }
 }

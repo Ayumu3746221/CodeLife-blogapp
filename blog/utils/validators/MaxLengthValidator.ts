@@ -9,6 +9,7 @@ export class MaxLengthValidator extends Validator {
   }
 
   protected doValidate(input: string): boolean {
+    if (!input) return true;
     return input.length <= this.maxLength;
   }
 }
