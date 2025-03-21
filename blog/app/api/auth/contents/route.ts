@@ -5,6 +5,9 @@ import { auth } from "@/auth";
 import { deleteContent } from "@/lib/microcms/content/deleteContent";
 import { PostContent } from "@/types/PostContent";
 import { createContent } from "@/lib/microcms/content/createCotent";
+import { ValidationContext } from "@/domain/ValidationStrategy/ValidationContext";
+import { ArticleValidationStrategy } from "@/domain/ValidationStrategy/ArticleValidationStrategy";
+import { EditArticleValidationStrategy } from "@/domain/ValidationStrategy/EditArticleValidationStrategy";
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
   const session = await auth();
@@ -13,6 +16,23 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
   }
   try {
     const body = (await req.json()) as PostContent;
+
+    const requestValid = new ValidationContext(
+      new ArticleValidationStrategy()
+    ).executeValidation({
+      title: body.title,
+      content: body.content,
+      userId: body.userId,
+    });
+
+    // バリデーションチェックが通らなかった場合はエラーレスポンス
+    if (!requestValid) {
+      return NextResponse.json(
+        { error: "Invalid Request | in POST /api/auth/contents/edit" },
+        { status: 400 }
+      );
+    }
+
     const response: { ok: boolean; message: string } = await createContent({
       title: body.title,
       content: body.content,
@@ -41,6 +61,24 @@ export const PATCH = async (req: NextRequest): Promise<NextResponse> => {
   }
   try {
     const body = (await req.json()) as PatchContent;
+
+    const requestValid = new ValidationContext(
+      new EditArticleValidationStrategy()
+    ).executeValidation({
+      id: body.id,
+      title: body.title,
+      content: body.content,
+      userId: body.userId,
+    });
+
+    // バリデーションチェックが通らなかった場合はエラーレスポンス
+    if (!requestValid) {
+      return NextResponse.json(
+        { error: "Invalid Request | in POST /api/auth/contents/edit" },
+        { status: 400 }
+      );
+    }
+
     const response: { ok: boolean; message: string } = await updateContent({
       id: body.id,
       title: body.title,

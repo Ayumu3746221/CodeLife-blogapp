@@ -1,8 +1,5 @@
-export type PatchContent = {
+import { PostContent } from "./PostContent";
+
+export interface PatchContent extends PostContent {
   id: string;
-  title: string;
-  content: string;
-  eyecatch?: string;
-  categoryId?: string;
-  userId: string;
-};
+}

@@ -15,4 +15,8 @@ describe("MinLengthValidator", () => {
   it("入力の文字数がminLengthより多い場合、trueを返す", () => {
     expect((validator as any).doValidate("abcdef")).toBe(true);
   });
+
+  it("入力の文字が空欄でnullだった場合、falseを返す", () => {
+    expect((validator as any).doValidate(null)).toBe(false);
+  });
 });
