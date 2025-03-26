@@ -1,4 +1,4 @@
-import ContentList from "@/components/ui/contentList/ContentList";
+import ContentList from "@/components/ui/contents/Contents";
 
 export default function Home() {
   return (
