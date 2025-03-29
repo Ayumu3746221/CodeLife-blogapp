@@ -1,9 +1,9 @@
-import Article from "@/components/ui/article/Article";
+import ViewArticle from "@/components/ui/article/ViewArticle";
 
 const articlePage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const articleId = (await params).id;
 
-  return <Article articleId={articleId} />;
+  return <ViewArticle articleId={articleId} />;
 };
 
 export default articlePage;

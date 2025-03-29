@@ -1,39 +1,20 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import useSWR from "swr";
-import Loading from "../load/Loading";
-import { ContentList } from "@/models/ContentList";
+import { ContentList } from "@/models/contentList/ContentList";
+import { fetchContentList } from "@/domain/adapter/fetchContentList";
 
-const fetcher = (url: string): Promise<{ response: ContentList }> =>
-  fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error("Failed to fetch content list in ContentList component");
-    }
-    return response.json();
-  });
+const ArticleList: React.FC = async () => {
+  let contentList: ContentList | null = null;
 
-const Contents: React.FC = () => {
-  const url = "/api/contents";
-  const { data, error, isLoading } = useSWR(url, fetcher);
-
-  if (error) {
-    return <div>Error: this request is faild</div>;
+  try {
+    contentList = await fetchContentList();
+  } catch (error: any) {
+    console.error("fetching article list'data failed");
+    throw new Response("Internal Server Error", { status: 500 });
   }
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (typeof data === "undefined") {
-    return <div>Error: this request is faild</div>;
-  }
-
-  const contentList: ContentList = data.response;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6 p-4">
@@ -75,4 +56,4 @@ const Contents: React.FC = () => {
   );
 };
 
-export default Contents;
+export default ArticleList;

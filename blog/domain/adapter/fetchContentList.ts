@@ -1,5 +1,5 @@
 import { getContentList } from "@/lib/microcms/content/getContentList";
-import { ContentList } from "@/models/ContentList";
+import { ContentList } from "@/models/contentList/ContentList";
 import { MicroCMSListResponse } from "@/types/MicroCMSResponse";
 import { BlogContent } from "@/types/RequiredContent";
 

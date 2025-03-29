@@ -1,6 +1,6 @@
 import { fetchContentList } from "../fetchContentList";
 import { getContentList } from "@/lib/microcms/content/getContentList";
-import { ContentList } from "@/models/ContentList";
+import { ContentList } from "@/models/contentList/ContentList";
 
 // getContentList のモック化
 jest.mock("@/lib/microcms/content/getContentList", () => ({
