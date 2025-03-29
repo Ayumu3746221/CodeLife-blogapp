@@ -1,4 +1,4 @@
-import ContentList from "@/components/ui/contents/Contents";
+import ArticleList from "@/components/ui/contents/ArticleList";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
         Article
       </h1>
       <div className="mx-4 lg:mx-8 my-4 lg:my-8">
-        <ContentList />
+        <ArticleList />
       </div>
     </div>
   );

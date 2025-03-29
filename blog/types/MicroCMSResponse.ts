@@ -59,8 +59,8 @@ export type MicroCMSResponse = {
   revisedAt: string;
   title: string;
   content: string;
-  eyecatch: Image;
-  category: Category;
+  eyecatch?: Image;
+  category?: Category;
   user: User;
 };
 
