@@ -1,12 +1,14 @@
 "use client";
-import { RequiredContentList } from "@/types/RequiredContent";
-import React, { useCallback, useState } from "react";
-import useSWR, { mutate } from "swr";
-import Loading from "../load/Loading";
-import ContentListItem from "./ContentListItem";
-import { useRouter } from "next/navigation";
 
-const fetcher = (url: string): Promise<{ response: RequiredContentList }> =>
+import React, { useCallback, useState } from "react";
+import useSWR from "swr";
+import Loading from "../load/Loading";
+import { useRouter } from "next/navigation";
+import { ContentList } from "@/models/contentList/ContentList";
+import UserContentListItem from "./UserContentListItem";
+import { ContentListItem } from "@/models/contentList/ContentListItem";
+
+const fetcher = (url: string): Promise<{ response: ContentList }> =>
   fetch(url).then((response) => {
     if (!response.ok) {
       throw new Error("Failed to fetch content list in ContentList component");
@@ -14,7 +16,7 @@ const fetcher = (url: string): Promise<{ response: RequiredContentList }> =>
     return response.json();
   });
 
-const ContentList = () => {
+const UserContentList = () => {
   const url = "/api/auth/contents/list";
   const { data, error, isLoading } = useSWR(url, fetcher);
   const [selectedArticle, setSelectedArticle] = useState<string | null>("");
@@ -58,7 +60,7 @@ const ContentList = () => {
     return <div>Error: this request is faild</div>;
   }
 
-  const contentList: RequiredContentList = data.response;
+  const contentList: ContentList = data.response;
   return (
     <div className="bg-gray-100 min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
@@ -76,9 +78,9 @@ const ContentList = () => {
           </h1>
         </div>
         <div className="space-y-4">
-          {contentList.contents.map((article) => (
+          {contentList.contents.map((article: ContentListItem) => (
             <div key={article.id}>
-              <ContentListItem
+              <UserContentListItem
                 article={article}
                 selectedArticle={selectedArticle}
                 toggleSelection={toggleSelection}
@@ -91,4 +93,4 @@ const ContentList = () => {
   );
 };
 
-export default ContentList;
+export default UserContentList;
