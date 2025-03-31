@@ -31,7 +31,9 @@ export default function Editor({ content, handleArticleChange }: EditorProps) {
   return (
     <div className="my-4 py-4 w-full">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Content</h1>
-      <BlockNoteView editor={editor} theme="light" />
+      <div className="leading-relaxed">
+        <BlockNoteView editor={editor} theme="light" />
+      </div>
     </div>
   );
 }

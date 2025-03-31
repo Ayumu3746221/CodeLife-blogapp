@@ -1,14 +1,15 @@
-import { getContentList } from "@/lib/microcms/content/getContentList";
+import { getContentListByUser } from "@/lib/microcms/content/getContentListByUser";
 import { ContentList } from "@/models/contentList/ContentList";
-import { MicroCMSListResponse } from "@/types/MicroCMSResponse";
 import { BlogContent } from "@/types/RequiredContent";
 import { formatDate } from "@/utils/formatters/formatDate";
 
-export async function fetchContentList(): Promise<ContentList> {
-  const rawData: MicroCMSListResponse = await getContentList(); // microCMS-jdkからデータ取得
+export async function fetchUserContentList(
+  userEmail: string
+): Promise<ContentList> {
+  const rawData: BlogContent[] = await getContentListByUser(userEmail); // microCMS-jdkからデータ取得
 
-  const filteredData = {
-    contents: rawData.contents.map((content: BlogContent) => ({
+  const filteredData: ContentList = {
+    contents: rawData.map((content: BlogContent) => ({
       id: content.id,
       updateAt: formatDate(content.updatedAt),
       eyecatchUrl: content.eyecatch?.url || "/github-icon.png",

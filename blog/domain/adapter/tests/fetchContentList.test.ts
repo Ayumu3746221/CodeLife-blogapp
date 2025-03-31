@@ -15,11 +15,13 @@ describe("fetchContentList", () => {
   });
 
   it("should correctly map data when all fields are present", async () => {
-    // 正常ケース: 全てのフィールドが存在
+    const inputDate = "2025-03-31T12:34:56Z";
+    const formattedDate = "2025/03/31";
     const rawData = {
       contents: [
         {
           id: "1",
+          updatedAt: inputDate,
           eyecatch: {
             url: "https://example.com/img.jpg",
             height: 100,
@@ -34,7 +36,6 @@ describe("fetchContentList", () => {
             revisedAt: "",
             name: "Category A",
           },
-          // 他フィールドは省略
         },
       ],
       totalCount: 1,
@@ -47,6 +48,7 @@ describe("fetchContentList", () => {
     expect(contentList.contents).toHaveLength(1);
     expect(contentList.contents[0]).toMatchObject({
       id: "1",
+      updateAt: formattedDate,
       eyecatchUrl: "https://example.com/img.jpg",
       title: "Test Article",
       categoryName: "Category A",
@@ -54,11 +56,13 @@ describe("fetchContentList", () => {
   });
 
   it("should replace eyecatchUrl with default when eyecatch is null", async () => {
-    // eyecatchがnullまたはundefinedの場合
+    const inputDate = "2025-03-31T11:11:11Z";
+    const formattedDate = "2025/03/31";
     const rawData = {
       contents: [
         {
           id: "2",
+          updatedAt: inputDate,
           eyecatch: null,
           title: "No Eyecatch",
           category: {
@@ -79,15 +83,23 @@ describe("fetchContentList", () => {
     mockedGetContentList.mockResolvedValue(rawData);
     const contentList: ContentList = await fetchContentList();
     expect(contentList.contents).toHaveLength(1);
-    expect(contentList.contents[0].eyecatchUrl).toBe("/github-icon.png");
+    expect(contentList.contents[0]).toMatchObject({
+      id: "2",
+      updateAt: formattedDate,
+      eyecatchUrl: "/github-icon.png",
+      title: "No Eyecatch",
+      categoryName: "Category B",
+    });
   });
 
   it("should replace categoryName with default when category is null", async () => {
-    // categoryがnullの場合
+    const inputDate = "2025-03-31T10:10:10Z";
+    const formattedDate = "2025/03/31";
     const rawData = {
       contents: [
         {
           id: "3",
+          updatedAt: inputDate,
           eyecatch: {
             url: "https://example.com/img2.jpg",
             height: 100,
@@ -105,6 +117,12 @@ describe("fetchContentList", () => {
     mockedGetContentList.mockResolvedValue(rawData);
     const contentList: ContentList = await fetchContentList();
     expect(contentList.contents).toHaveLength(1);
-    expect(contentList.contents[0].categoryName).toBe("");
+    expect(contentList.contents[0]).toMatchObject({
+      id: "3",
+      updateAt: formattedDate,
+      eyecatchUrl: "https://example.com/img2.jpg",
+      title: "No Category",
+      categoryName: "",
+    });
   });
 });

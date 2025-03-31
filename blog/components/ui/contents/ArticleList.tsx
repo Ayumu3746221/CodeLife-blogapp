@@ -34,9 +34,10 @@ const ArticleList: React.FC = async () => {
               />
             </div>
             <div className="p-4">
-              <h2 className="text-black font-semibold text-xl mb-2 truncate">
+              <h2 className="text-black font-semibold text-xl truncate">
                 {content.title}
               </h2>
+              <p className="text-gray-500 text-sm">{content.updateAt}</p>
             </div>
             {content.categoryName && (
               <div className="flex items-center space-x-2 px-2 py-1">

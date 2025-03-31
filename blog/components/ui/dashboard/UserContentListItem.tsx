@@ -1,19 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { BlogContent } from "@/types/RequiredContent";
+import { ContentListItem } from "@/models/contentList/ContentListItem";
 
-interface ContentListItemProps {
-  article: BlogContent;
+interface UserContentListItemProps {
+  article: ContentListItem;
   selectedArticle: string | null;
   toggleSelection: (id: string) => void;
 }
 
-const ContentListItem = ({
+const UserContentListItem = ({
   article,
   selectedArticle,
   toggleSelection,
-}: ContentListItemProps) => {
+}: UserContentListItemProps) => {
   return (
     <div className="flex items-center space-x-4">
       <div
@@ -31,10 +31,10 @@ const ContentListItem = ({
         className="block flex-1"
       >
         <div className="bg-white shadow-md rounded p-4 flex flex-col md:flex-row items-center w-full">
-          {article.eyecatch?.url && (
+          {article.eyecatchUrl && (
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 mr-4">
               <Image
-                src={article.eyecatch.url}
+                src={article.eyecatchUrl}
                 alt="eyecatch"
                 fill
                 className="object-cover rounded"
@@ -46,7 +46,7 @@ const ContentListItem = ({
               {article.title}
             </h2>
             <p className="text-sm text-gray-600 mt-1">
-              Last Updated: {article.updatedAt}
+              Last Updated: {article.updateAt}
             </p>
           </div>
         </div>
@@ -55,4 +55,4 @@ const ContentListItem = ({
   );
 };
 
-export default ContentListItem;
+export default UserContentListItem;

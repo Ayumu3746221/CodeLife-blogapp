@@ -1,11 +1,7 @@
 import { auth } from "@/auth";
-import { FormatingMicroCMSListResponse } from "@/lib/convert/convert";
-import {
-  ContentFetchError,
-  getContentList,
-} from "@/lib/microcms/content/getContentList";
-import { MicroCMSListResponse } from "@/types/MicroCMSResponse";
-import { RequiredContentList } from "@/types/RequiredContent";
+import { fetchUserContentList } from "@/domain/adapter/fetchUserContentList";
+import { ContentFetchError } from "@/lib/microcms/content/getContentList";
+import { ContentList } from "@/models/contentList/ContentList";
 import { Session } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -31,16 +27,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   try {
     const userEmail: string = session.user.email;
-    const contents: MicroCMSListResponse = await getContentList();
-    const responseData: RequiredContentList =
-      await FormatingMicroCMSListResponse(contents);
-    const filteredContents = responseData.contents.filter(
-      (response) => response.user.mail === userEmail
-    );
-    return NextResponse.json(
-      { response: { contents: filteredContents } },
-      { status: 200 }
-    );
+    const contents: ContentList = await fetchUserContentList(userEmail);
+    return NextResponse.json({ response: contents }, { status: 200 });
   } catch (error) {
     if (error instanceof ContentFetchError) {
       return NextResponse.json(
