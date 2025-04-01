@@ -1,19 +1,42 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { ContentList } from "@/models/contentList/ContentList";
-import { fetchContentList } from "@/domain/adapter/fetchContentList";
+import Loading from "../load/Loading";
 
-const ArticleList: React.FC = async () => {
-  let contentList: ContentList | null = null;
+const ArticleList: React.FC = () => {
+  const [contentList, setContentList] = React.useState<ContentList | null>(
+    null
+  );
+  const [error, setError] = React.useState<string | null>(null);
 
-  try {
-    contentList = await fetchContentList();
-  } catch (error: any) {
-    console.error("fetching article list'data failed");
-    throw new Response("Internal Server Error", { status: 500 });
+  useEffect(() => {
+    const abortController = new AbortController();
+    fetch("/api/article/list", {
+      signal: abortController.signal,
+    })
+      .then((response) => response.json())
+      .then((data) => setContentList(data.response))
+      .catch((error) => {
+        console.error("Error fetching article list data:", error);
+        setError("Internal Server Error");
+      });
+
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!contentList) {
+    return <Loading />;
   }
 
   return (
