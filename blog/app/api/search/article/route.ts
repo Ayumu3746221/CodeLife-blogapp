@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
     const article: MicroCMSResponse = await getContent(id as string);
     const response: Article = await FormatingMicroCMSResponse(article);
-    return NextResponse.json({ response }, { status: 200 });
+    return NextResponse.json({ response }, { status: 200 }).headers.set("Cache-Control", "s-maxage=60, stale-while-revalidate");
   } catch (error) {
     if (error instanceof ContentFetchError) {
       return NextResponse.json(
