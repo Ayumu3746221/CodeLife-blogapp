@@ -16,24 +16,24 @@ const ViewArticle: React.FC<ArticleProps> = async ({
   return (
     <>
       <main className="w-full min-h-screen bg-gray-50">
-        <div className="max-w-4xl mx-auto p-6">
+        <article className="h-entry max-w-4xl mx-auto p-6">
           <div className="relative w-full h-96">
             <Image
               src={article.eyecatchUrl}
               alt="eyecatch"
               fill
-              className="object-cover rounded-lg"
+              className="u-photo object-cover rounded-lg"
             />
           </div>
 
           <div className="mt-6">
-            <h2 className="text-3xl font-bold text-gray-800">
+            <h2 className="p-name text-3xl font-bold text-gray-800">
               {article?.title}
             </h2>
-            <p className="text-gray-500 mt-1">{article?.updatedAt}</p>
+            <p className="dt-updated text-gray-500 mt-1">{article?.updatedAt}</p>
           </div>
 
-          <div className="mt-8 w-full mx-auto prose prose-indigo">
+          <div className="e-content mt-8 w-full mx-auto prose prose-indigo">
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(article?.content || ""),
@@ -48,10 +48,10 @@ const ViewArticle: React.FC<ArticleProps> = async ({
               </span>
             </div>
           )}
-        </div>
+        </article>
       </main>
       <div className="mb-2 border-t pt-4 w-full">
-        <div className="max-w-3xl mx-auto p-6">
+        <div className="h-card max-w-3xl mx-auto p-6">
           <h3 className="text-xl font-bold mb-4">この記事を書いた人</h3>
           <div className="flex items-center space-x-4">
             <div className="relative w-16 h-16">
@@ -63,11 +63,11 @@ const ViewArticle: React.FC<ArticleProps> = async ({
                 }
                 alt={article?.user?.user || "default alt text"}
                 fill
-                className="rounded-full object-cover"
+                className="u-photo rounded-full object-cover"
               />
             </div>
             <div>
-              <p className="text-lg font-semibold">{article?.user?.user}</p>
+              <p className="p-name text-lg font-semibold">{article?.user?.user}</p>
               <p className="text-sm text-gray-600">
                 {article?.user?.introduction}
               </p>
